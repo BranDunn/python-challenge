@@ -13,7 +13,8 @@ df_original.head()
 df_clean = df_original.dropna(how = 'any')
 cast_total = df_clean['Voter ID'].count()
 print('Total votes cast:', cast_total)
-
+with open('PyBank.txt', "w") as text_file:
+    text_file.write('Total votes cast:', cast_total)
 #make list of candidates who received votes
 candidate_list_long = df_clean['Candidate']
 
@@ -28,6 +29,7 @@ for x in candidate_list_long:
         unique_cand_list.append(x) 
             
 print('Candidates who received votes:', unique_cand_list)
+    text_file.write('Candidates who received votes:', unique_cand_list)
 
 #find percentage of votes each candidate won
 #get total for Khan
@@ -71,15 +73,23 @@ for i in candidate_list_long:
         otooley_share = (otooley_count / cast_total) * 100
         
 print(otooley_share, "%", "of vote is for O'Tooley")
+    text_file.write(otooley_share, "%", "of vote is for O'Tooley")
 print(li_share, '%', 'of vote is for Li')
+    text_file.write(li_share, '%', 'of vote is for Li')
 print(correy_share, '%', 'of vote is for Correy')
+    text_file.write(correy_share, '%', 'of vote is for Correy')
 print(khan_share, '%', 'of vote is for Khan')
+    text_file.write(khan_share, '%', 'of vote is for Khan')
 
 #find total number of votes each candidate won
 print(khan_count, 'total votes for Khan')
+    text_file.write(khan_count, 'total votes for Khan')
 print(correy_count, 'total votes for Correy')
+    text_file.write(correy_count, 'total votes for Correy')
 print(li_count, 'total votes for Li')
+    text_file.write(li_count, 'total votes for Li')
 print(otooley_count, "total votes for O'Tooley")
+    text_file.write(otooley_count, "total votes for O'Tooley")
 
 #find winner of the election based on popular vote
 popular_vote = max([khan_count, correy_count, li_count, otooley_count])
@@ -93,3 +103,4 @@ if popular_vote == li_count:
 if popular_vote == otooley_count:
     winner = "O'Tooley"
 print(winner, 'wins!')
+    text_file.write(winner, 'wins!')
